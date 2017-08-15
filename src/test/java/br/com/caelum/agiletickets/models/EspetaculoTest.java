@@ -3,9 +3,11 @@ package br.com.caelum.agiletickets.models;
 import static org.junit.Assert.*;
 
 import java.util.List;
+import java.util.Locale;
 
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
+import org.joda.time.format.DateTimeFormat;
 import org.junit.Test;
 
 public class EspetaculoTest {
@@ -98,5 +100,21 @@ public class EspetaculoTest {
 		assertEquals(listSessoes.size(), 1);
 	}
 	
-	
+	@Test
+	public void ValidarSessaoCriada() {
+		Espetaculo ivete = new Espetaculo();
+		LocalDate diaInicio = new LocalDate();
+		LocalDate diaFim = new LocalDate();
+		LocalTime hora = new LocalTime();
+		
+		List<Sessao> listSessoes = ivete.criaSessoes(diaInicio, diaFim, hora, Periodicidade.DIARIA);
+		
+		Sessao sessao = listSessoes.get(0);
+		
+		String diaIni = diaInicio.toString(DateTimeFormat.shortDate().withLocale(new Locale("pt", "BR")));
+		String horaIni = hora.toString(DateTimeFormat.shortTime().withLocale(new Locale("pt", "BR")));
+		
+		assertEquals(sessao.getDia(), diaIni);
+		assertEquals(sessao.getHora(), horaIni);
+	}
 }
