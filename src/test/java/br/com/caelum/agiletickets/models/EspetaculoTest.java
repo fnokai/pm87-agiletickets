@@ -139,7 +139,7 @@ public class EspetaculoTest {
 	public void ValidarSessoesCriadasSemanal() {
 		Espetaculo ivete = new Espetaculo();
 		LocalDate diaInicio = new LocalDate();
-		LocalDate diaFim = diaInicio.plusDays(30);
+		LocalDate diaFim = diaInicio.plusDays(3);
 		LocalTime hora = new LocalTime();
 
 		List<Sessao> listSessoes = ivete.criaSessoes(diaInicio, diaFim, hora, Periodicidade.SEMANAL);
